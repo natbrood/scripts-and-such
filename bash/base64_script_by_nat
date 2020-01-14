@@ -1,33 +1,23 @@
 #!/bin/bash
-echo "Required: The 'base64' application"
-echo ""
+echo -e "Required: The 'base64' application\n"
 
 echo "This script will Base64 a set amount of times."
-echo ""
-read -p "Name the input file: " input
-echo ""
 
+read -p "Name the input file: " input
 read -p "Name the amount of times the script should run: " amount
-echo ""
-echo ""
+echo -e "\n"
 
 
 echo "Encrypt or Decrypt?"
-echo "Select an option:"
-echo ""
+echo -e "Select an option:\n"
+
 echo "  1)  Encrypt"
-echo "  2)  Decrypt"
-echo ""
+echo -e "  2)  Decrypt\n"
+
 read n
-echo ""
-echo ""
+echo -e "\n"
 
-
-echo "================================================================="
-echo ""
-echo "Output:"
-echo ""
-echo ""
+echo -e "Output:\n\n"
 
 
 case $n in
@@ -43,8 +33,7 @@ case $n in
 		echo $output | tr -d ' ' > tmpfile
 		cat tmpfile
 
-		echo ""
-		echo ""
+		echo -e "\n"
 	done
 	mv tmpfile encrypted.b64
 
@@ -64,8 +53,7 @@ case $n in
 		echo $output | tr -d ' ' > tmpfile
 		cat tmpfile
 
-		echo ""
-		echo ""
+		echo -e "\n"
 	done
 	mv tmpfile decrypted.b64
 
