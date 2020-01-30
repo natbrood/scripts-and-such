@@ -53,7 +53,6 @@ while ans:
 	break
 
 
-
     elif ans=="2":
 	im = Image.open(filename)
 	rgb_im = im.convert('RGB')
