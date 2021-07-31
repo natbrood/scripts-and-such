@@ -1,0 +1,5 @@
+---
+  - name: check if ready
+    panos_check:
+      provider: "{{ providerAPI }}"
+      timeout: 0

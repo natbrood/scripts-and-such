@@ -1,0 +1,55 @@
+---
+#For this exam I had about 20-30 minutes for the yaml part
+
+# My notes:
+# just the task
+# hosts all
+# install nginx using apt
+# see if ngingx is actually installed
+# copy /project/application.conf to /etc/nginx/sites-enabled/application.conf
+# unarchive /project/www.tar.gz to /var/www/html
+# start nginx webservice
+# Test connectivity using curl
+
+- name: Installing and configuring Ngninx
+  #gather_facts: false
+  hosts: all
+  #become: yes
+
+  tasks:
+    - name: Install Nginx using apt
+      apt:
+        name: nginx
+        state: present
+
+    - name: Copy config files
+      copy:
+        src: /project/application.conf
+        dest: /etc/nginx/sites-enabled/application.conf
+
+    - name: Extract project files
+      unarchive:
+        src: /project/www.tar.gz
+        dest: /var/www/html
+
+    # Optionally, we could also use the ansible.builtin.service module
+    # Due to idepmotency I believe that this could be a more optimal solution.
+    # - name: Start Nginx webservice
+    #   service:
+    #     name: nginx
+    #     state: started
+    
+    - name: Start Nginx webservice
+      shell: service nginx start
+
+
+    # For the test we could also use the built in get_url or uri
+
+    - name: Test connectivity with Nginx
+      shell: curl http://localhost/
+      register: nginx_connectivity_result
+
+    - name: Nginx connectivity result
+      debug:
+        var: nginx_connectivity_result
+        # verbosity: 2

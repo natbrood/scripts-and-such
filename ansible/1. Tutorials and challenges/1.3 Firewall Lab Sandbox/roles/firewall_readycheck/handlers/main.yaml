@@ -1,0 +1,5 @@
+# ---
+#   - name: commit changes
+#     panos_commit_firewall:
+#       provider: "{{ providerAPI }}"
+#       admins: ['thijmenadm']

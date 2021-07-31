@@ -1,0 +1,10 @@
+[fw1]
+devsecops-fw01
+
+[fw2]
+devsecops-fw02
+
+[firewalls:children]
+fw1
+fw2
+

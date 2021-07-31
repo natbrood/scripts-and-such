@@ -1,0 +1,14 @@
+---
+- name: Main Script to call Roles
+  hosts: fw1
+  gather_facts: no
+  become: yes
+  # vars:
+  #   foo: bar
+
+  roles:
+    - role: preparations
+    # - role: credentials
+    - role: gather_api
+    - role: firewall_readycheck
+    - role: firewall_setup

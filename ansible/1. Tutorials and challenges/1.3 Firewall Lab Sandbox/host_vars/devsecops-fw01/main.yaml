@@ -1,0 +1,8 @@
+ansible_host: 192.168.210.241
+ansible_host_gw: 192.168.210.1
+ansible_host_mask: 255.255.255.0
+hostname: devsecops-fw01
+# ansible_ssh_user: ""
+# ansible_ssh_pass: ""
+ansible_connection: local
+brand: "paloalto"

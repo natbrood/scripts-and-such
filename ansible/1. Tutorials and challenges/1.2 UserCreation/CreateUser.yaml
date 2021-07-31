@@ -1,0 +1,22 @@
+---
+
+- name: User creation
+  gather_facts: false
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Ping
+      ping:
+
+    - name: Create madewithansible on all hosts
+      user:
+        name: 'madewithansible'
+        password: '$6$anvWM1EeVa3Kg$GCWz4xdOPObepDUaKLRuFz2EvpqAr0FrCbr4oHptvGrF8nlHCMgFXu7lhMR.vbV0QfAMWxJgWash1m11jjpyo0'
+        groups: # Empty by default, here we give it some groups
+         - sudo
+        state: present
+        shell: /bin/bash                 # Defaults to /bin/bash
+        system: no                       # Defaults to no
+        createhome: yes                  # Defaults to yes
+        home: /home/madewithansible      # Defaults to /home/<username>

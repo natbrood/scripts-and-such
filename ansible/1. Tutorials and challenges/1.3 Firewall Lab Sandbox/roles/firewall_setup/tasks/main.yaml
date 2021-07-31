@@ -1,0 +1,62 @@
+---
+  - name: Create tag object "Thijmen_Ansible"
+    panos_tag_object:
+      provider: "{{ providerAPI }}"
+      name: "Thijmen_Ansible"
+      color: "cyan"
+      comments: "Thijmen's Ansible Tag, created for visibility"
+
+  - name: dummy rule I
+    panos_security_rule:
+      provider: "{{ providerAPI }}"
+      rule_name: "Ansible dummy I"
+      description: "First Ansible test rule"
+      source_zone: ["trust"]
+      destination_zone: ["untrust"]
+      source_ip: ["192.168.100.101"]
+      source_user: ["any"]
+      destination_ip: ["1.1.1.1"]
+      category: ["any"]
+      application: ["any"]
+      service: ["service-http"]
+      hip_profiles: ["any"]
+      action: "allow"
+      commit: "False"
+      tag_name: "Thijmen_Ansible"
+    notify: commit changes
+
+  - name: dummy rule II
+    panos_security_rule:
+      provider: "{{ providerAPI }}"
+      rule_name: "Ansible dummy II"
+      description: "Second Ansible test rule"
+      source_zone: ["trust"]
+      destination_zone: ["untrust"]
+      source_ip: ["192.168.100.102"]
+      source_user: ["any"]
+      destination_ip: ["1.1.1.1"]
+      category: ["any"]
+      application: ["any"]
+      service: ["service-http"]
+      hip_profiles: ["any"]
+      action: "allow"
+      commit: "False"
+      tag_name: "Thijmen_Ansible"
+    notify: commit changes
+
+
+
+  # - name: Get the system info
+  #   paloaltonetworks.panos.panos_op:
+  #     provider: "{{ providerVARS }}"
+  #     cmd: "show system info"
+  #   register: res
+
+  # - debug:
+  #     msg: "{{ res.stdout }}"
+
+  # # Gather facts
+  # - name: Get facts
+  #   paloaltonetworks.panos.panos_facts:
+  #     provider: "{{ providerAPI }}"
+  #     #gather_subset: ["config"]

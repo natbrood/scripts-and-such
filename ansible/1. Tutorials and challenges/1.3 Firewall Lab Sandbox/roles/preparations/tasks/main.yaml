@@ -1,0 +1,22 @@
+---
+  - name: Show the groups the host(s) are in
+    debug:
+      msg: "{{group_names}}"
+
+  - name: Installing pan-os-python
+    pip:
+      name: 
+        - pan-os-python
+        - pandevice
+
+
+  # - name: Ping
+  #   ping:
+
+  # - command: "whoami"
+  #   register: whoami
+  # - command: "hostname"
+  #   register: hostname
+  # - command: "uname -r"
+  #   register: uname
+  # - debug: msg="{{whoami.stdout }}  on  {{ hostname.stdout }}  |  {{unamessh.stdout }}"

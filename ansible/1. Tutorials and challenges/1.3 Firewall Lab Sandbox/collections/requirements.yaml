@@ -1,0 +1,11 @@
+---
+collections:
+# - paloaltonetworks.panos
+- name: community.general
+  version: 3.4.0
+- name: awx.awx
+  version: 19.2.2
+
+
+# roles:
+# - 
