@@ -2,6 +2,6 @@ ansible_host: 192.168.111.133
 ansible_host_mask: 255.255.255.0
 hostname: ubuntu
 ansible_ssh_user: "thijmen"
-ansible_ssh_pass: "Welkom01"
-ansible_become_password: "Welkom01"
+ansible_ssh_pass: {{ password }}
+ansible_become_password: {{ password }}
 # ansible_connection: local
