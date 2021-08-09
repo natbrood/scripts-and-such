@@ -1,0 +1,70 @@
+---
+  - name: Ping
+    ping:
+
+  - name: Install dependencies
+    apt:
+      name: "{{ item }}"
+      state: latest
+      update_cache: yes
+    loop:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      - python3-pip
+      # - py-pip
+      # - python3-dev
+      # - libffi-dev
+      # - openssl-dev
+      # - gcc
+      # - libc-dev
+      # - rust
+      # - cargo
+      # - make
+      # - rpm
+
+  - name: Import docker key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: Adding Docker repository
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+
+  - name: Install Docker
+    apt:
+      name: "{{ item }}"
+      # state: latest
+      update_cache: yes
+    loop:
+      - docker-ce={{ dockerversion }}
+      - docker-ce-cli={{ dockerversion }}
+      - containerd.io={{ containerdversion }}
+      - docker-compose={{ dockercomposeversion }}
+
+  # Don't need pip I think. Since I can also install it through apt.
+  # - name: Install Docker-compose
+  #   pip:
+  #     name: docker-compose=={{ dockercomposeversion }}
+
+  - name: Start docker at boot
+    service:
+      name: docker
+      enabled: yes
+      state: started
+
+  - name: Create docker daemon.json
+    copy:
+      dest: "/etc/docker/daemon.json"
+      content: |
+        {
+          "storage-driver": "overlay2",
+          "metrics-addr": "0.0.0.0:9323",
+          "experimental": true,
+          "live-restore": true
+        }
+  

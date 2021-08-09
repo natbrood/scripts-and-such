@@ -1,0 +1,15 @@
+---
+- name: Docker initial setup
+  hosts: all
+  gather_facts: no
+  become: yes
+  # vars:
+  #   a   
+
+  roles:
+    - role: docker_setup
+      vars:
+        dockerversion: "5:20.10.8~3-0~ubuntu-bionic" #20.10.8
+        containerdversion: "1.4.9-1"
+        dockercomposeversion: "1.25.0-1"  #Latest on pip: 1.29.2
+        
